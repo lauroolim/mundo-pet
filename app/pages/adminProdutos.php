@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
+<?php
+
+$dbFilePath = __DIR__ . '/../api/products.db';
+
+try {
+    $pdo = new PDO('sqlite:' . $dbFilePath);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $pdo->query("SELECT * FROM products");
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    echo 'Erro ao conectar ao banco de dados: ' . $e->getMessage();
+    exit;
+}
+?>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +31,7 @@
         <img src="../img/logo.png" alt="Logo Mundo Pet">
       </div>
       <ul class="list-nav">
+        <li class="title"><a href="./catalogo.php">Catálogo</a></li> 
         <li class="title"><a href="#">Serviços</a></li>
         <li class="title"><a href="#">Loja</a></li>
         <li class="title"><a href="#">Sobre</a></li>
@@ -47,21 +64,26 @@
         <section class="product-list-section">
           <h3>Lista de Produtos:</h3>
 
-          <div class="product-item">
-            <div class="product-info">
-              <div class="product-image">
-                <img src="../img/icons/user.png" alt="Produto">
-              </div>
-              <div class="product-details">
-                <h4>Produto 1</h4>
-                <p>Descrição...</p>
-              </div>
+          <?php foreach ($products as $product): ?>
+    <div class="product-item">
+        <div class="product-info">
+            <div class="product-image">
+            <img src="../img/logo.png" alt="Produto">
             </div>
-            <div class="product-actions">
-              <a href="#" class="edit-btn">editar</a>
-              <button class="delete-btn">&#128465;</button> <!-- Ícone de lixeira -->
+            <div class="product-details">
+                <h4><?php echo htmlspecialchars($product['name']); ?></h4>
+                <p><?php echo htmlspecialchars($product['description']); ?></p>
+                <p>R$ <?php echo number_format($product['price'], 2, ',', '.'); ?></p>
+                <p>Estoque: <?php echo htmlspecialchars($product['estoque']); ?></p>
             </div>
-          </div>
+        </div>
+        <div class="product-actions">
+            <a href="edit-product.php?id=<?php echo $product['id']; ?>" class="edit-btn">Editar</a>
+            <button class="delete-btn" onclick="confirmDelete(<?php echo $product['id']; ?>)">&#128465;</button> <!-- Ícone de lixeira -->
+        </div>
+    </div>
+<?php endforeach; ?>
+
 
           <!-- Botão Adicionar Produto -->
           <div class="add-product">
