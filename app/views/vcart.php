@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
     exit("Você precisa estar logado para acessar o carrinho.");
 }
 
-if (!isset($_SESSION['cart_total'])) {
+if (isset($_SESSION['cart_total'])) {
     die("Erro: Nenhum total de carrinho encontrado. Por favor, volte ao carrinho.");
 }
 
@@ -55,7 +55,7 @@ try {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #E8E8E8;
             margin: 0;
             padding: 20px;
         }
@@ -101,6 +101,25 @@ try {
             cursor: pointer;
         }
 
+        .back-link{
+          background-color: #575BA7;
+  
+          color: white;
+          padding: 10px 30px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-weight: bold;
+          cursor: pointer;
+          font-size: 18px;
+          font-weight: bold;
+          transition: background-color 0.3s, transform 0.2s;
+          margin-top: 10px;
+        }
+
+        .back-link:hover {
+          background-color: #575ba8;
+          transform: scale(1.05);
+        }
         .remove-btn:hover {
             background-color: darkred;
         }

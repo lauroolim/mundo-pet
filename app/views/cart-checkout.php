@@ -27,23 +27,24 @@
 
         .payment-section {
             width: 35%;
-            background-color: #8c9eff;
+            background-color: #6C5E9C;
             padding: 20px;
             border-radius: 10px;
             color: white;
         }
 
         h1 {
-            font-size: 24px;
-            color: #333;
+            font-size: 27px;
+            color: black;
+            margin: revert;
         }
 
         input {
-            width: 100%;
-            padding: 10px;
+            width: 93%;
+            padding: 16px;
             margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            border-radius: 22px;
+            border: 2px #fff;
         }
 
         .back-link {
@@ -56,12 +57,18 @@
         .btn-finalizar {
             display: block;
             width: 100%;
-            padding: 15px;
-            background-color: #333;
+            padding: 16px;
+            background-color: #4F5B93;
             color: white;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 15px;
             text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-finalizar:hover{
+            background-color: #575BA7;
+            transform: scale(1.05);
         }
     </style>
 </head>
