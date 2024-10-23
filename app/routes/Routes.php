@@ -18,6 +18,7 @@ class Routes
                 '/register' => 'site\UserController@register',
                 '/services' => 'site\ServiceController@show',
                 '/vcart' => 'site\CartController@vcart',
+                '/vcart/catalog' => 'site\productController@show',
                 '/admin/agendamentos/edit/[0-9]+' => 'admin\AdminAgendamentoController@edit',
                 '/admin/agendamentos' => 'admin\AdminAgendamentoController@show',
                 '/admin' => 'admin\AdminController@show',
